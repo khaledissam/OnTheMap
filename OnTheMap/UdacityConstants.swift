@@ -6,6 +6,8 @@
 //  Copyright © 2016 Minjie Zhu. All rights reserved.
 //
 
+import UIKit
+
 extension UdacityClient
 {
     // MARK: Constants
@@ -38,8 +40,16 @@ extension UdacityClient
         static let Udacity = "udacity"
         static let UserName = "username"
         static let Password = "password"
+        static let UniqueKey = "uniqueKey"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let MapString = "mapString"
+        static let MediaURL = "mediaURL"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
     }
-    
+ 
+
     // MARK: JSON Response Keys
     struct JSONResponseKeys {
         
@@ -61,5 +71,11 @@ extension UdacityClient
         static let Latitude = "latitude"
         static let Longitude = "longitude"
         
+    }
+    
+    // MARK: Colors
+    struct Colors {
+        static let grey = UIColor(red: 224.0/255, green: 224.0/255, blue: 221.0/255, alpha: 1.0)
+        static let darkBlue = UIColor(red: 92.0/255, green: 135.0/255, blue: 178.0/255, alpha: 1.0)
     }
 }

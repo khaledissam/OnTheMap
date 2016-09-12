@@ -44,7 +44,9 @@ class UdacityClient: NSObject {
             if let xsrfCookie = xsrfCookie {
                 request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
             }
-        } else if httpMethod == HTTPMethods.GET {
+        }
+        
+        if method == Methods.StudentLocation {
             request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
             request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         }
@@ -76,7 +78,7 @@ class UdacityClient: NSObject {
             }
             
             /* subset response data! */
-            if httpMethod != HTTPMethods.GET {
+            if method ==  Methods.Session {
                 let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
                 /* 5/6. Parse the data and use the data (happens in completion handler) */
                 self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandler)

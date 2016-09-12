@@ -16,6 +16,9 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView : MKMapView!
     
     // MARK: Life cycle
+    override func viewDidLoad() {
+        mapView.delegate = self
+    }
 
     // MARK: Helper
     func updateAnnotation() {
@@ -72,29 +75,30 @@ extension MapViewController : MKMapViewDelegate {
         
         let reuseId = "pin"
         
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         
         if pinView == nil {
-            pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView?.enabled = true
-            pinView?.canShowCallout = true
-            //pinView?.pinTintColor = UIColor.blueColor()
-            pinView?.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-        }
-        else {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = MKPinAnnotationView.redPinColor()
+            pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+            
+        } else {
             pinView!.annotation = annotation
         }
         
         return pinView
     }
     
-    
     // This delegate method is implemented to respond to taps. It opens the system browser
     // to the URL specified in the annotationViews subtitle property.
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+
         if control == view.rightCalloutAccessoryView {
+
             let app = UIApplication.sharedApplication()
             if let toOpen = view.annotation?.subtitle! {
+
                 app.openURL(NSURL(string: toOpen)!)
             }
         }

@@ -12,10 +12,8 @@ class MapListViewController: UITabBarController {
     
     
     // MARK: Life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // get student information
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         update()
     }
     
@@ -45,6 +43,15 @@ class MapListViewController: UITabBarController {
                 }
             })
         }
+    }
+    
+    @IBAction func add() {
+        let vc = storyboard!.instantiateViewControllerWithIdentifier("InformationPostingViewController") as! InformationPostingViewController
+        
+        let postingNavigationController = UINavigationController()
+        postingNavigationController.pushViewController(vc, animated: false)
+        
+        presentViewController(postingNavigationController, animated: true, completion: nil)
     }
     
 }

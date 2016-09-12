@@ -112,4 +112,29 @@ extension UdacityClient
         }
     }
     
+    func addStudentInfo(mapString : String, mediaURL : String, latitude : Double, longitude : Double, completionHandler : (errorString : String?) -> Void) {
+
+        // parameters
+        let parameters : [String:AnyObject] = [:]
+        
+        // request
+        if userId == nil {
+            completionHandler(errorString: "No userId")
+            return
+        }
+        let jsonBody = "{\"\(JSONBodyKeys.UniqueKey)\": \"\(userId!)\", \"\(JSONBodyKeys.FirstName)\": \"MJ\", \"\(JSONBodyKeys.LastName)\": \"Zhu\", \"\(JSONBodyKeys.MapString)\": \"\(mapString)\", \"\(JSONBodyKeys.MediaURL)\": \"\(mediaURL)\", \"\(JSONBodyKeys.Latitude)\": \(latitude), \"\(JSONBodyKeys.Longitude)\": \(longitude)}"
+        print("jsonBody = \(jsonBody)")
+        
+        taskForHTTPMethod(Constants.parseHost, path: Constants.parsePath, method: Methods.StudentLocation, httpMethod: HTTPMethods.POST, parameters: parameters, jsonBody: jsonBody) { (result, error) in
+            // guard
+            guard (error == nil) else {
+                completionHandler(errorString: error!)
+                return
+            }
+            
+            print("Add student info")
+            completionHandler(errorString: nil)
+        }
+    }
+    
 }
