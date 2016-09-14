@@ -95,11 +95,10 @@ extension MapViewController : MKMapViewDelegate {
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
 
         if control == view.rightCalloutAccessoryView {
-
-            let app = UIApplication.sharedApplication()
+            
             if let toOpen = view.annotation?.subtitle! {
 
-                app.openURL(NSURL(string: toOpen)!)
+                GlobalHelperFunction.openURLInBrowser(toOpen)
             }
         }
     }

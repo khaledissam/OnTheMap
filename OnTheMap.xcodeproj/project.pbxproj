@@ -24,7 +24,8 @@
 		558D7A901D7107CD0029B9BC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558D7A8F1D7107CD0029B9BC /* ListViewController.swift */; };
 		558D7A921D71EE2F0029B9BC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558D7A911D71EE2F0029B9BC /* MapViewController.swift */; };
 		558D7A961D7BFAC20029B9BC /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558D7A951D7BFAC20029B9BC /* InformationPostingViewController.swift */; };
-		558D7A9C1D813A8D0029B9BC /* DisplayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558D7A9B1D813A8D0029B9BC /* DisplayAlert.swift */; };
+		55F6CDFE1D88FE350022891F /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F6CDFD1D88FE350022891F /* Utility.swift */; };
+		55F6CE001D88FFF10022891F /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F6CDFF1D88FFF10022891F /* KeyboardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +69,8 @@
 		558D7A8F1D7107CD0029B9BC /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		558D7A911D71EE2F0029B9BC /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		558D7A951D7BFAC20029B9BC /* InformationPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
-		558D7A9B1D813A8D0029B9BC /* DisplayAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayAlert.swift; sourceTree = "<group>"; };
+		55F6CDFD1D88FE350022891F /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		55F6CDFF1D88FFF10022891F /* KeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +123,7 @@
 			children = (
 				558D7A4F1D7018520029B9BC /* AppDelegate.swift */,
 				558D7A811D702FC10029B9BC /* GCDBlackBox.swift */,
-				558D7A9B1D813A8D0029B9BC /* DisplayAlert.swift */,
+				55F6CDFD1D88FE350022891F /* Utility.swift */,
 				558D7A7F1D7019250029B9BC /* Model */,
 				558D7A801D70192C0029B9BC /* Controller */,
 				558D7A7E1D7018E60029B9BC /* Assets */,
@@ -186,6 +188,7 @@
 				558D7A8F1D7107CD0029B9BC /* ListViewController.swift */,
 				558D7A911D71EE2F0029B9BC /* MapViewController.swift */,
 				558D7A951D7BFAC20029B9BC /* InformationPostingViewController.swift */,
+				55F6CDFF1D88FFF10022891F /* KeyboardViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -324,13 +327,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55F6CDFE1D88FE350022891F /* Utility.swift in Sources */,
 				558D7A921D71EE2F0029B9BC /* MapViewController.swift in Sources */,
 				558D7A841D70B1910029B9BC /* UdacityClient.swift in Sources */,
 				558D7A861D70B2D50029B9BC /* UdacityConstants.swift in Sources */,
 				558D7A521D7018520029B9BC /* LoginViewController.swift in Sources */,
-				558D7A9C1D813A8D0029B9BC /* DisplayAlert.swift in Sources */,
 				558D7A821D702FC10029B9BC /* GCDBlackBox.swift in Sources */,
 				558D7A501D7018520029B9BC /* AppDelegate.swift in Sources */,
+				55F6CE001D88FFF10022891F /* KeyboardViewController.swift in Sources */,
 				558D7A961D7BFAC20029B9BC /* InformationPostingViewController.swift in Sources */,
 				558D7A881D70C23F0029B9BC /* UdacityConvenience.swift in Sources */,
 				558D7A8E1D70FA380029B9BC /* StudentInformation.swift in Sources */,

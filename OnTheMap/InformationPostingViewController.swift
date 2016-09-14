@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import AddressBookUI
 
-class InformationPostingViewController: UIViewController {
+class InformationPostingViewController: KeyboardViewController {
     
     // MARK: Properties
     private var address : String = ""
@@ -49,6 +49,7 @@ class InformationPostingViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        configureTextFields([topTextFiled,midTextFiled], viewOnKeyboard: nil, distToKeyBoard: 0)
         setUI()
         
     }
@@ -120,8 +121,7 @@ class InformationPostingViewController: UIViewController {
         
         CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
             if error != nil {
-                displayAlert(self, title: "\(error)", message: "", ok: "ok")
-                print(error)
+                GlobalHelperFunction.displayAlert(self, title: "WARNING", message: "No address is found", ok: "ok")
                 return
             }
             if placemarks?.count > 0 {
@@ -137,7 +137,7 @@ class InformationPostingViewController: UIViewController {
                 }
                 
                 if coordinate == nil {
-                    displayAlert(self, title: "No place is found", message: "", ok: "Ok")
+                    GlobalHelperFunction.displayAlert(self, title: "No place is found", message: "", ok: "Ok")
                     return
                 }
                 
@@ -153,14 +153,15 @@ class InformationPostingViewController: UIViewController {
         if let url = topTextFiled.text {
             
             if url.isEmpty {
-                displayAlert(self, title: "No url is given", message: "", ok: "ok")
+                GlobalHelperFunction.displayAlert(self, title: "No url is given", message: "", ok: "ok")
                 return
             }
         
             UdacityClient.sharedInstance().addStudentInfo(address, mediaURL: url, latitude: latitude, longitude: longitude, completionHandler: { (errorString) in
                 performUIUpdatesOnMain({ 
                     if errorString != nil {
-                        displayAlert(self, title: "\(errorString!)", message: "", ok: "ok")
+                        print("submit")
+                        GlobalHelperFunction.displayAlert(self, title: "\(errorString!)", message: "", ok: "ok")
                         return
                     } else {
                         self.cancel()
@@ -168,7 +169,7 @@ class InformationPostingViewController: UIViewController {
                 })
             })
         } else {
-            displayAlert(self, title: "No url is given", message: "", ok: "ok")
+            GlobalHelperFunction.displayAlert(self, title: "No url is given", message: "", ok: "ok")
         }
     }
     

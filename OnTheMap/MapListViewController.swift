@@ -31,7 +31,9 @@ class MapListViewController: UITabBarController {
         // get student information
         UdacityClient.sharedInstance().getStudentInfo { (errorString) in
             if let error = errorString {
-                print(error)
+                performUIUpdatesOnMain({ 
+                    GlobalHelperFunction.displayAlert(self, title: "Updating failed", message: error, ok: "Ok")
+                })
                 return
             }
             performUIUpdatesOnMain({ 

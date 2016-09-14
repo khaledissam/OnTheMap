@@ -77,5 +77,6 @@ extension UdacityClient
     struct Colors {
         static let grey = UIColor(red: 224.0/255, green: 224.0/255, blue: 221.0/255, alpha: 1.0)
         static let darkBlue = UIColor(red: 92.0/255, green: 135.0/255, blue: 178.0/255, alpha: 1.0)
+        static let disableAlpha : CGFloat = 0.5
     }
 }

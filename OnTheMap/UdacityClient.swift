@@ -8,18 +8,12 @@
 
 import Foundation
 
-class UdacityClient: NSObject {
+class UdacityClient {
     
     // MARK: Properties
     var sessionId: String?
     var userId: String?
     var studentInfo : [StudentInformation] = []
-    
-    // MARK: Initializers
-    
-    override init() {
-        super.init()
-    }
     
     // MARK: HTTP method
     
@@ -61,7 +55,7 @@ class UdacityClient: NSObject {
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
+                sendError("There was an error with your request: \(error!.localizedDescription)")
                 return
             }
             

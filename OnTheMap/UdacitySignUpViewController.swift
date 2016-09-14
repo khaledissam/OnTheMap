@@ -10,7 +10,7 @@ import UIKit
 
 
 // MARK: - UdacitySignUpViewController: UIViewController
-class UdacitySignUpViewController: UIViewController {
+class UdacitySignUpViewController: UIViewController, UIWebViewDelegate {
     
     // MARK: Properties
     
@@ -24,8 +24,6 @@ class UdacitySignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        webView.delegate = self
         
         navigationItem.title = "Udacity SignUp"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(cancelSignup))
@@ -44,11 +42,4 @@ class UdacitySignUpViewController: UIViewController {
     func cancelSignup() {
         dismissViewControllerAnimated(true, completion: nil)
     }
-}
-
-// MARK: - UdacitySignUpViewController: UIWebViewDelegate
-
-extension UdacitySignUpViewController: UIWebViewDelegate {
-    
-
 }

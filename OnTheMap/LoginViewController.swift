@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - LoginViewController: UIViewController
 
-class LoginViewController: UIViewController {
+class LoginViewController: KeyboardViewController {
     
     // MARK: Outlets
     @IBOutlet weak var debugTextLabel : UILabel!
@@ -21,40 +21,29 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var iconImage : UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    // MARK: Properties
-    private var keyboardOnScreen = false
+    // MARK: Actions
+    @IBAction func userDidTapView(sender: AnyObject) {
+        resignAll()
+    }
     
     
     // MARK: Life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        configureTextField(usernameTextField)
-        configureTextField(passwordTextField)
-        setUIEnabled(true)
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        subscribeToNotification(UIKeyboardWillShowNotification, selector: #selector(keyboardWillShow))
-        subscribeToNotification(UIKeyboardWillHideNotification, selector: #selector(keyboardWillHide))
-        subscribeToNotification(UIKeyboardDidShowNotification, selector: #selector(keyboardDidShow))
-        subscribeToNotification(UIKeyboardDidHideNotification, selector: #selector(keyboardDidHide))
+
+        configureTextFields([usernameTextField,passwordTextField], viewOnKeyboard: nil, distToKeyBoard: 0)
         setUIEnabled(true)
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        unsubscribeFromAllNotifications()
     }
     
     // MARK: Login
     @IBAction func loginPressed(sender: AnyObject) {
         
-        userDidTapView(self)
+        resignAll()
         
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
             displayError("Username or Password Empty.")
@@ -96,57 +85,6 @@ class LoginViewController: UIViewController {
     
 }
 
-// MARK: - LoginViewController: UITextFieldDelegate
-
-extension LoginViewController: UITextFieldDelegate {
-    
-    // MARK: UITextFieldDelegate
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    // MARK: Show/Hide Keyboard
-    
-    func keyboardWillShow(notification: NSNotification) {
-        if !keyboardOnScreen {
-            view.frame.origin.y = -keyboardHeight(notification)
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        if keyboardOnScreen {
-            view.frame.origin.y = 0
-        }
-    }
-    
-    func keyboardDidShow(notification: NSNotification) {
-        keyboardOnScreen = true
-    }
-    
-    func keyboardDidHide(notification: NSNotification) {
-        keyboardOnScreen = false
-    }
-    
-    private func keyboardHeight(notification: NSNotification) -> CGFloat {
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-        return keyboardSize.CGRectValue().height
-    }
-    
-    private func resignIfFirstResponder(textField: UITextField) {
-        if textField.isFirstResponder() {
-            textField.resignFirstResponder()
-        }
-    }
-    
-    @IBAction func userDidTapView(sender: AnyObject) {
-        resignIfFirstResponder(usernameTextField)
-        resignIfFirstResponder(passwordTextField)
-    }
-}
-
 
 // MARK: - LoginViewController (Configure UI)
 
@@ -167,8 +105,8 @@ extension LoginViewController {
             activityIndicator.stopAnimating()
             
         } else {
-            loginButton.alpha = 0.5
-            signupButton.alpha = 0.5
+            loginButton.alpha = UdacityClient.Colors.disableAlpha
+            signupButton.alpha = UdacityClient.Colors.disableAlpha
             activityIndicator.startAnimating()
         }
     }
@@ -189,22 +127,4 @@ extension LoginViewController {
         }
     }
 
-    
-    private func configureTextField(textField: UITextField) {
-        textField.delegate = self
-    }
-    
 }
-
-
-// MARK: - LoginViewController (Notifications)
-extension LoginViewController {
-    private func subscribeToNotification(notification: String, selector: Selector) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: notification, object: nil)
-    }
-    
-    private func unsubscribeFromAllNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-}
-

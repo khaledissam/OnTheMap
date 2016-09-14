@@ -32,4 +32,11 @@ extension ListViewController {
         
         return cell
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let info = UdacityClient.sharedInstance().studentInfo[indexPath.row]
+        
+        GlobalHelperFunction.openURLInBrowser(info.mediaURL)
+
+    }
 }

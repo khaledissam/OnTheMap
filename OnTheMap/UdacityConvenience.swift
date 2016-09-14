@@ -104,7 +104,7 @@ extension UdacityClient
                 return
             }
             
-            self.studentInfo = StudentInformation.studentInfoFromResults(results)
+            self.studentInfo = StudentInformationFactory.studentInfoFromDicts(results)
             
             print("Get student information")
             
