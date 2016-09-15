@@ -6,8 +6,12 @@
 //  Copyright © 2016 Minjie Zhu. All rights reserved.
 //
 
-class StudentInformationFactory {
-    static func studentInfoFromDict(dictionary : [String : AnyObject]) -> StudentInformation? {
+
+struct StudentInformation {
+    
+    // MARK: Initializer
+    // construct a StudentInformation from a dictionary
+    init?(dictionary: [String:AnyObject]) {
         guard let objectId = dictionary[UdacityClient.JSONResponseKeys.ObjectId] as? String else {
             return nil
         }
@@ -23,42 +27,39 @@ class StudentInformationFactory {
         guard let mapString = dictionary[UdacityClient.JSONResponseKeys.MapString] as? String else {
             return nil
         }
-        let mediaURL = dictionary[UdacityClient.JSONResponseKeys.MediaURL] as? String
-        
+        guard let mediaURL = dictionary[UdacityClient.JSONResponseKeys.MediaURL] as? String else {
+            return nil
+        }
         guard let latitude = dictionary[UdacityClient.JSONResponseKeys.Latitude] as? Double else {
             return nil
         }
         guard let longitude = dictionary[UdacityClient.JSONResponseKeys.Longitude] as? Double else {
             return nil
         }
-        
-        
-        var url  = ""
-        if mediaURL != nil {
-            url = mediaURL!
-        }
-        
-        let info = StudentInformation(objectId: objectId, uniqueKey: uniqueKey, firstName: firstName, lastName: lastName, mapString: mapString, mediaURL: url, latitude: latitude, longitude: longitude)
-        
-        return info
+        self.objectId = objectId
+        self.uniqueKey = uniqueKey
+        self.firstName = firstName
+        self.lastName = lastName
+        self.mapString = mapString
+        self.mediaURL = mediaURL
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
-    static func studentInfoFromDicts(results: [[String:AnyObject]]) -> [StudentInformation] {
+    static func studentInfoFromResults(results: [[String:AnyObject]]) -> [StudentInformation] {
         
         var info = [StudentInformation]()
         
         // iterate through array of dictionaries, each StudentInformation is a dictionary
         for result in results {
-            if let studentinfo = studentInfoFromDict(result) {
+            if let studentinfo = StudentInformation(dictionary: result) {
                 info.append(studentinfo)
             }
         }
         
         return info
     }
-}
-
-struct StudentInformation {
+    
     // MARK: Properties
     
     let objectId : String
@@ -69,4 +70,8 @@ struct StudentInformation {
     let mediaURL : String
     let latitude : Double
     let longitude : Double
+    
+    // MARK: Shared Instance
+    static var sharedInstance : [StudentInformation] = []
+    
 }

@@ -19,12 +19,12 @@ class ListViewController: UITableViewController {
 extension ListViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UdacityClient.sharedInstance().studentInfo.count
+        return StudentInformation.sharedInstance.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ListCell")!
-        let info = UdacityClient.sharedInstance().studentInfo[indexPath.row]
+        let info = StudentInformation.sharedInstance[indexPath.row]
         
         // Set the name and image
         cell.textLabel?.text = info.firstName + info.lastName
@@ -34,7 +34,7 @@ extension ListViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let info = UdacityClient.sharedInstance().studentInfo[indexPath.row]
+        let info = StudentInformation.sharedInstance[indexPath.row]
         
         GlobalHelperFunction.openURLInBrowser(info.mediaURL)
 

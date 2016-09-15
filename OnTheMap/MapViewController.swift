@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
         // to create map annotations. This would be more stylish if the dictionaries were being
         // used to create custom structs. Perhaps StudentLocation structs.
         
-        for info in UdacityClient.sharedInstance().studentInfo {
+        for info in StudentInformation.sharedInstance {
             
             // Notice that the float values are being used to create CLLocationDegree values.
             // This is a version of the Double type.

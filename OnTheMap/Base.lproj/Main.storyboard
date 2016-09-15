@@ -26,7 +26,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cpF-fP-Nol">
                                 <rect key="frame" x="20" y="40" width="551" height="530"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="udacity" translatesAutoresizingMaskIntoConstraints="NO" id="cYq-x1-LWY">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="udacity" translatesAutoresizingMaskIntoConstraints="NO" id="cYq-x1-LWY">
                                         <rect key="frame" x="0.0" y="0.0" width="551" height="110"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in to Udacity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me1-Vs-5Mk">
@@ -347,16 +347,22 @@
                                     <constraint firstItem="dr1-oV-xbi" firstAttribute="height" secondItem="sJa-hv-gAf" secondAttribute="height" multiplier="3" id="jaT-Y5-fY9"/>
                                 </constraints>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="a76-Id-99O">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9Fz-L2-tEE" firstAttribute="leading" secondItem="0SJ-SZ-F59" secondAttribute="leading" id="97M-Jx-v2z"/>
+                            <constraint firstItem="a76-Id-99O" firstAttribute="centerY" secondItem="0SJ-SZ-F59" secondAttribute="centerY" id="BjY-qL-Xlb"/>
                             <constraint firstAttribute="trailing" secondItem="9Fz-L2-tEE" secondAttribute="trailing" id="Ptc-uB-NqZ"/>
                             <constraint firstItem="8Az-Ip-tVs" firstAttribute="top" secondItem="9Fz-L2-tEE" secondAttribute="bottom" id="VW4-JR-qac"/>
                             <constraint firstItem="9Fz-L2-tEE" firstAttribute="top" secondItem="g0q-I1-akU" secondAttribute="bottom" id="Xvu-5E-dAb"/>
+                            <constraint firstItem="a76-Id-99O" firstAttribute="centerX" secondItem="0SJ-SZ-F59" secondAttribute="centerX" id="gvZ-vf-dzK"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="a76-Id-99O" id="C3d-VQ-5gq"/>
                         <outlet property="botButton" destination="ZU2-hN-I4e" id="Pnd-2a-iko"/>
                         <outlet property="botView" destination="cER-NE-Pra" id="7MY-ht-wLZ"/>
                         <outlet property="mapView" destination="99T-My-C5c" id="Rf2-mP-t6J"/>

@@ -88,7 +88,7 @@ extension UdacityClient
     }
     
     func getStudentInfo(completionHandler : (errorString : String?) -> Void) {
-        let parameters : [String:AnyObject] = [:]
+        let parameters : [String:AnyObject] = [JSONBodyKeys.Order:"updatedAt"]
         let jsonBody = ""
         
         taskForHTTPMethod(Constants.parseHost, path: Constants.parsePath, method: Methods.StudentLocation, httpMethod: HTTPMethods.GET, parameters: parameters, jsonBody: jsonBody) { (result, error) in
@@ -104,7 +104,7 @@ extension UdacityClient
                 return
             }
             
-            self.studentInfo = StudentInformationFactory.studentInfoFromDicts(results)
+            StudentInformation.sharedInstance = StudentInformation.studentInfoFromResults(results)
             
             print("Get student information")
             

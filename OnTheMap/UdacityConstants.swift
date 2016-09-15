@@ -47,6 +47,7 @@ extension UdacityClient
         static let MediaURL = "mediaURL"
         static let Latitude = "latitude"
         static let Longitude = "longitude"
+        static let Order = "order"
     }
  
 
@@ -70,6 +71,8 @@ extension UdacityClient
         static let MediaURL = "mediaURL"
         static let Latitude = "latitude"
         static let Longitude = "longitude"
+        
+        
         
     }
     

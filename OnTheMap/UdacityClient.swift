@@ -13,7 +13,6 @@ class UdacityClient {
     // MARK: Properties
     var sessionId: String?
     var userId: String?
-    var studentInfo : [StudentInformation] = []
     
     // MARK: HTTP method
     
@@ -61,7 +60,8 @@ class UdacityClient {
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
+                //sendError("Your request returned a status code other than 2xx!")
+                sendError("Wrong email or password")
                 return
             }
             

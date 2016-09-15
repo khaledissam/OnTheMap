@@ -25,6 +25,7 @@ class InformationPostingViewController: KeyboardViewController {
     @IBOutlet weak var botButton : UIButton!
     @IBOutlet weak var mapView : MKMapView!
     @IBOutlet weak var botView : UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Actions
     @IBAction func buttonPressed() {
@@ -71,6 +72,8 @@ class InformationPostingViewController: KeyboardViewController {
         botView.backgroundColor = UdacityClient.Colors.grey
         
         botButton.setTitle("Find on the map", forState: .Normal)
+        
+        activityIndicator.hidden = true
     }
     
     private func updateUI() {
@@ -89,6 +92,9 @@ class InformationPostingViewController: KeyboardViewController {
         botButton.setTitle("Submit", forState: .Normal)
         
         setMapVisibleArea()
+        
+        activityIndicator.stopAnimating()
+        activityIndicator.hidden = true
     }
     
     private func setMapVisibleArea() {
@@ -114,6 +120,8 @@ class InformationPostingViewController: KeyboardViewController {
     
     private func findOnMap() {
         address = midTextFiled.text!
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
         forwardGeocoding()
     }
     
