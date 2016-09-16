@@ -73,7 +73,7 @@ class InformationPostingViewController: KeyboardViewController {
         
         botButton.setTitle("Find on the map", forState: .Normal)
         
-        activityIndicator.hidden = true
+        enableActivityIndicator(false)
     }
     
     private func updateUI() {
@@ -93,8 +93,8 @@ class InformationPostingViewController: KeyboardViewController {
         
         setMapVisibleArea()
         
-        activityIndicator.stopAnimating()
-        activityIndicator.hidden = true
+        enableActivityIndicator(false)
+
     }
     
     private func setMapVisibleArea() {
@@ -120,15 +120,24 @@ class InformationPostingViewController: KeyboardViewController {
     
     private func findOnMap() {
         address = midTextFiled.text!
-        activityIndicator.hidden = false
-        activityIndicator.startAnimating()
+        enableActivityIndicator(true)
         forwardGeocoding()
+    }
+    
+    private func enableActivityIndicator(enable : Bool) {
+        activityIndicator.hidden = !enable
+        if enable {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
     }
     
     private func forwardGeocoding() {
         
         CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
             if error != nil {
+                self.enableActivityIndicator(false)
                 GlobalHelperFunction.displayAlert(self, title: "WARNING", message: "No address is found", ok: "ok")
                 return
             }
@@ -141,6 +150,7 @@ class InformationPostingViewController: KeyboardViewController {
                     let areaOfInterest = placemark!.areasOfInterest![0]
                     print(areaOfInterest)
                 } else {
+                    self.enableActivityIndicator(false)
                     print("No area of interest found.")
                 }
                 
